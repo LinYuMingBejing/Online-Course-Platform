@@ -3,6 +3,7 @@ package com.items.api.service;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.items.api.entity.EduCourse;
 import com.items.api.entity.vo.CourseInfoVo;
+import com.items.api.entity.vo.CoursePublishVo;
 
 import java.util.List;
 
@@ -15,4 +16,8 @@ public interface EduCourseService extends IService<EduCourse> {
     CourseInfoVo getCourseInfo(String courseId);
 
     void updateCourseInfo(CourseInfoVo courseInfoVo);
+
+    CoursePublishVo publishCourseInfo(String id);
+
+    void removeCourse(String courseId);
 }

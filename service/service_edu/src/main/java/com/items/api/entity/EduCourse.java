@@ -47,6 +47,9 @@ public class EduCourse implements Serializable {
     @ApiModelProperty(value = "銷售數量")
     private Long buyCount;
 
+    @ApiModelProperty(value = "瀏覽量")
+    private Long viewCount;
+
     @ApiModelProperty(value = "樂觀鎖")
     private Long version;
 

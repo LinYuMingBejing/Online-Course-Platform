@@ -1,21 +1,25 @@
 package com.items.api.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.Query;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.items.api.entity.EduChapter;
 import com.items.api.entity.EduVideo;
 import com.items.api.entity.chapter.ChapterVo;
 import com.items.api.entity.chapter.VideoVo;
+import com.items.api.exceptionHandler.GuliException;
 import com.items.api.mapper.EduChapterMapper;
 import com.items.api.service.EduChapterService;
 import com.items.api.service.EduVideoService;
 import org.apache.catalina.mbeans.MBeanUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Service
 public class EduChapterServiceImpl extends ServiceImpl<EduChapterMapper, EduChapter> implements EduChapterService {
 
     @Autowired
@@ -58,5 +62,27 @@ public class EduChapterServiceImpl extends ServiceImpl<EduChapterMapper, EduChap
         }
 
         return finalList;
+    }
+
+    // 刪除章節方法
+    @Override
+    public void deleteChapter(String chapterId) {
+        QueryWrapper<EduChapter> wrapper = new QueryWrapper<>();
+        wrapper.eq("chapter_id", chapterId);
+        int count = videoService.count(); // 需修改
+        // 判斷
+        if(count >0){
+            throw new GuliException(20001, "無法刪除");
+        }else{
+            int result = baseMapper.deleteById(chapterId);
+        }
+
+    }
+
+    @Override
+    public void removeChapterByCourseId(String courseId) {
+        QueryWrapper<EduChapter> wrapper = new QueryWrapper<>();
+        wrapper.eq("course_id", courseId);
+        baseMapper.delete(wrapper);
     }
 }

@@ -34,7 +34,7 @@
 		<jwt.version>0.7.0</jwt.version>
 		<aliyun-java-sdk-core.version>4.3.3</aliyun-java-sdk-core.version>
 		<aliyun-sdk-oss.version>3.1.0</aliyun-sdk-oss.version>
-		<aliyun-java-sdk-vod.version>2.12.2</aliyun-java-sdk-vod.version>
+		<aliyun-java-sdk-vod.version>2.15.5</aliyun-java-sdk-vod.version>
 		<aliyun-java-vod-upload.version>1.4.11</aliyun-java-vod-upload.version>
 		<aliyun-sdk-vod-upload.version>1.4.11</aliyun-sdk-vod-upload.version>
 		<fast.json.version>1.2.28</fast.json.version>
@@ -98,6 +98,18 @@
 				<version>${poi.version}</version>
 			</dependency>
 
+			<dependency>
+				<groupId>org.apache.poi</groupId>
+				<artifactId>poi</artifactId>
+				<version>${poi.version}</version>
+			</dependency>
+
+<!--			<dependency>-->
+<!--				<groupId>org.springframework.cloud</groupId>-->
+<!--				<artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>-->
+<!--				<version>${cloud-alibaba.version}</version>-->
+<!--			</dependency>-->
+
 			<!--文件上傳-->
 			<dependency>
 				<groupId>commons.fileupload</groupId>
@@ -123,6 +135,18 @@
 				<groupId>com.aliyun.oss</groupId>
 				<artifactId>aliyun-sdk-oss</artifactId>
 				<version>${aliyun-sdk-oss.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>com.aliyun</groupId>
+				<artifactId>aliyun-java-sdk-core</artifactId>
+				<version>${aliyun-java-sdk-core.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>com.aliyun</groupId>
+				<artifactId>aliyun-java-sdk-vod</artifactId>
+				<version>${aliyun-java-sdk-vod.version}</version>
 			</dependency>
 
 			<dependency>

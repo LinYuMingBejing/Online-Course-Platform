@@ -15,7 +15,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(Exception.class)
     @ResponseBody // 返回數據
     public R error(Exception e){
-        return R.error().message("執行了全局異常處理....");
+        return R.error().message("執行了全局異常處理...." + e);
     }
 
     // 特定異常
