@@ -11,4 +11,7 @@ public interface UcenterMemberService extends IService<UcenterMember> {
 
     // 註冊方法
     void register(RegisterVo registerVo);
+
+    // 查詢註冊人數
+    Integer countRegisterDay(String day);
 }

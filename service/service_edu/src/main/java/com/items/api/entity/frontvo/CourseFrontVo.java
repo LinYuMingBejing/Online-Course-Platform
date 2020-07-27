@@ -21,7 +21,7 @@ public class CourseFrontVo implements Serializable {
     private String subjectId;
 
     @ApiModelProperty(value = "銷量排序")
-    private String buyCCountSort;
+    private String buyCountSort;
 
     @ApiModelProperty(value = "最新時間排序")
     private String gmtCreateSort;

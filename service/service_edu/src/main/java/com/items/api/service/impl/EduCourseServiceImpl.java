@@ -1,9 +1,13 @@
 package com.items.api.service.impl;
 
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.items.api.entity.EduCourse;
 import com.items.api.entity.EduCourseDescription;
+import com.items.api.entity.frontvo.CourseFrontVo;
+import com.items.api.entity.frontvo.CourseWebVo;
 import com.items.api.entity.vo.CourseInfoVo;
 import com.items.api.entity.vo.CoursePublishVo;
 import com.items.api.exceptionHandler.GuliException;
@@ -15,8 +19,13 @@ import com.items.api.service.EduVideoService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+
+import javax.management.Query;
+import java.util.HashMap;
+import java.util.Map;
 
 
 @Service
@@ -105,5 +114,54 @@ public class EduCourseServiceImpl extends ServiceImpl<EduCourseMapper, EduCourse
         if(reuslt==0){
             throw new GuliException(20001,"刪除失敗");
         }
+    }
+
+    // 條件查詢帶分頁查詢課程
+    @Override
+    public Map<String, Object> getCourseFrontList(Page<EduCourse> pageParam, CourseFrontVo courseFrontVo) {
+
+        QueryWrapper<EduCourse> wrapper = new QueryWrapper<>();
+        // 判斷條件是否為空
+
+        // 一級分類
+        if (StringUtils.isEmpty(courseFrontVo.getSubjectParentId())){
+            wrapper.eq("subject_parent_id", courseFrontVo.getSubjectParentId());
+        }
+
+        // 二級分類
+        if (StringUtils.isEmpty(courseFrontVo.getSubjectId())){
+            wrapper.eq("subject_id", courseFrontVo.getSubjectId());
+        }
+
+        // 關注度
+        if (StringUtils.isEmpty(courseFrontVo.getBuyCountSort())){
+            wrapper.orderByDesc("buy_count");
+        }
+
+        // 時間排序
+        if (StringUtils.isEmpty(courseFrontVo.getGmtCreateSort())){
+            wrapper.orderByDesc("buy_count");
+        }
+
+        // 價格排序
+        if (StringUtils.isEmpty(courseFrontVo.getPriceSort())){
+            wrapper.orderByDesc("price");
+        }
+
+
+        Page<EduCourse> eduCoursePage = baseMapper.selectPage(pageParam, wrapper);
+        Map<String, Object> map = new HashMap<>();
+        map.put("current", pageParam.getCurrent());
+        map.put("pages", pageParam.getPages());
+        map.put("size", pageParam.getSize());
+        map.put("total", pageParam.getTotal());
+        map.put("hasNext", pageParam.hasNext());
+        map.put("hasPrevious", pageParam.hasPrevious());
+        return map;
+    }
+
+    @Override
+    public CourseWebVo getBaseCourseInfo(String courseId) {
+        return baseMapper.getBaseCourseInfo(courseId);
     }
 }

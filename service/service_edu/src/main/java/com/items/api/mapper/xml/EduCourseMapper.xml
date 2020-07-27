@@ -15,4 +15,20 @@
                            left outer join edu_subject es2 ON ec.subject_id = es2.id
         WHERE ec.id = #{courseId}
     </select>
+
+    <!--SQL語句，根據課程id查詢課程基本訊息-->
+    <select id="getBaseCourseInfo" resultType="com.items.api.entity.vo.CourseWebVo">
+        SELECT ec.id, ec.title, ec.price, ec.lesson_num AS lessonNum, ec.cover,
+            ec.buy_count, ec.view_count, ecd.description,
+            ed.id AS teacherId,  e.intro, et.avatar,
+            et.name AS teacherName,
+            es1.id AS subjectLevelOneId, es1.title AS subjectLevelOne,
+            es2.id AS subjectLevelTwoId, es2.title AS subjectLevelTwo,
+        FROM edu_course ec left outer join edu_course_description ecd ON ec.id = ecd.id
+        left outer join edu_teacher et ON  ec.teacher_id = et.id
+        left outer join edu_subject es1 ON ec.subject_parent_id = es1.id
+        left outer join edu_subject es2 ON ec.subject_id = es2.id
+        WHERE ec.id = #{courseId}
+    </select>
+
 </mapper>
