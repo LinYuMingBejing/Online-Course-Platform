@@ -6,6 +6,7 @@
     <modules>
         <module>service</module>
 		<module>common</module>
+		<module>infrastucture</module>
 	</modules>
     <parent>
 		<groupId>org.springframework.boot</groupId>
@@ -43,8 +44,10 @@
 		<commons-dbutils.version>1.7</commons-dbutils.version>
 		<canal.client.version>1.1.0</canal.client.version>
 		<docker.image.prefix>zx</docker.image.prefix>
-		<cloud-alibaba.version>0.2.2.RELEASE</cloud-alibaba.version>
+		<cloud-alibaba.version>0.9.0.RELEASE</cloud-alibaba.version>
 		<javax-xml.version>2.3.0</javax-xml.version>
+		<netflix-hystrix.version>2.2.3.RELEASE</netflix-hystrix.version>
+		<netflix-ribbon.version>2.2.1.RELEASE</netflix-ribbon.version>
 	</properties>
 
 	<dependencyManagement>
@@ -53,6 +56,7 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-starter-thymeleaf</artifactId>
 			</dependency>
+
 			<dependency>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-starter-web</artifactId>
@@ -110,11 +114,35 @@
 				<version>${poi.version}</version>
 			</dependency>
 
-<!--			<dependency>-->
-<!--				<groupId>org.springframework.cloud</groupId>-->
-<!--				<artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>-->
-<!--				<version>${cloud-alibaba.version}</version>-->
-<!--			</dependency>-->
+			<dependency>
+				<groupId>org.springframework.cloud</groupId>
+				<artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
+				<version>${cloud-alibaba.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.springframework.cloud</groupId>
+				<artifactId>spring-cloud-starter-openfeign</artifactId>
+				<version>2.2.3.RELEASE</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.springframework.cloud</groupId>
+				<artifactId>spring-cloud-starter-netflix-hystrix</artifactId>
+				<version>${netflix-hystrix.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.springframework.cloud</groupId>
+				<artifactId>spring-cloud-starter-netflix-ribbon</artifactId>
+				<version>${netflix-ribbon.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.springframework.cloud</groupId>
+				<artifactId>spring-cloud-starter-gateway</artifactId>
+				<version>${netflix-hystrix.version}</version>
+			</dependency>
 
 			<!--文件上傳-->
 			<dependency>

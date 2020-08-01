@@ -71,4 +71,5 @@ public class EduCourseController {
         courseService.removeCourse(courseId);
         return R.ok();
     }
+
 }
