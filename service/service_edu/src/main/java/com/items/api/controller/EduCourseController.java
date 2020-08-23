@@ -21,7 +21,7 @@ public class EduCourseController {
     private EduCourseService courseService;
 
     // 課程列表 基本實現
-    @GetMapping()
+    @GetMapping("findAll")
     public R getCourseList(){
         List<EduCourse> list = courseService.list(null);
         return R.ok().data("list",list);
